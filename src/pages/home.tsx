@@ -15,7 +15,7 @@ const Home = () => {
 	};
 	return (
 		<div className="p-8 flex-1">
-			<div className="flex gap-4 flex-col md:flex-row h-72 mb-4 border rounded-lg p-4 bg-secondary">
+			<div className="flex gap-4 max-md:flex-col flex-row h-72 mb-4 border rounded-lg p-4 bg-secondary">
 				<Textarea 
 					placeholder="Insira seu texto para ser incriptado"
 					className="resize-none h-full  bg-card"
@@ -31,17 +31,19 @@ const Home = () => {
 				/>
 			</div>
 
-			<div className="flex gap-4 flex-row h-28 items-center border rounded-lg p-4 bg-secondary-foreground">
-				<Input
-					placeholder="Insira uma chave para incriptar o decriptografar o texto"
-					className="placeholder:text-white text-white w-1/2"
-					onChange={e => setTextKey(e.target.value)}
-					value={textKey}
-				/>
+			<div className="flex max-md:flex-col flex-row gap-4  items-center border rounded-lg px-4 py-8 bg-secondary-foreground">
+				<div className="md:w-1/2 w-full">
+					<Input
+						placeholder="Insira uma chave para incriptar o decriptografar o texto"
+						className="placeholder:text-white text-white"
+						onChange={e => setTextKey(e.target.value)}
+						value={textKey}
+					/>
+				</div>
 
-				<div className="flex-1 flex gap-4 w-1/2">
-					<Button className="w-full" variant="outline">Decriptografar</Button>
-					<Button className="w-full" onClick={handleCriptografar}>Criptografar</Button>
+				<div className="flex-1 flex gap-4 w-1/2 max-md:w-full">
+					<Button className="w-1/2 max-[370px]:w-full" variant="outline">Decriptografar</Button>
+					<Button className="w-1/2 max-[370px]:w-full" onClick={handleCriptografar}>Criptografar</Button>
 				</div>
 			</div>
 		</div>
