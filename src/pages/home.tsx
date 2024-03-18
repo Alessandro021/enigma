@@ -1,17 +1,24 @@
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
+import {cripto} from "@/services/cripto";
 
 const Home = () => {
 	const [textDecriptografado, setTextDecriptografado]= useState<string>("");
 	const [textCriptografado, setTextCriptografado]= useState<string>("");
 	const [textKey, setTextKey]= useState<string>("");
 
-	const handleCriptografar = () => {
-		console.log(textDecriptografado);
-		console.log(textKey);
+	const {aesEncrypt, aesDecrypt} = cripto();
+
+	const handleEncrypt = () => {
+		const hash = aesEncrypt(textDecriptografado, textKey);
+		setTextCriptografado(hash);
+	};
+	const handleDecrypt = () => {
+		const message = aesDecrypt(textCriptografado, textKey);
+		setTextDecriptografado(message);
+		
 	};
 	return (
 		<div className="p-8 flex-1">
@@ -42,8 +49,8 @@ const Home = () => {
 				</div>
 
 				<div className="flex-1 flex gap-4 w-1/2 max-md:w-full">
-					<Button className="w-1/2 max-[370px]:w-full" variant="outline">Decriptografar</Button>
-					<Button className="w-1/2 max-[370px]:w-full" onClick={handleCriptografar}>Criptografar</Button>
+					<Button className="w-1/2 max-[370px]:w-full" onClick={handleDecrypt} variant="outline">Decriptografar</Button>
+					<Button className="w-1/2 max-[370px]:w-full" onClick={handleEncrypt}>Criptografar</Button>
 				</div>
 			</div>
 		</div>
