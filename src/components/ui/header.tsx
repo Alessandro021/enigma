@@ -33,18 +33,7 @@ const Header = () => {
 									variant={"outline"}
 									className="w-full items-center gap-2"
 								>
-								Criptografar AES
-								</Button>
-							</Link>
-						</SheetClose>
-
-						<SheetClose asChild>
-							<Link to={"/"}>
-								<Button
-									variant={"outline"}
-									className="w-full items-center gap-2"
-								>
-								Decriptografar AES
+								Criptografar & Decriptografar AES
 								</Button>
 							</Link>
 						</SheetClose>
@@ -61,7 +50,7 @@ const Header = () => {
 						</SheetClose>
 
 						<SheetClose asChild>
-							<Link to={"/"}>
+							<Link to={"/sha1"}>
 								<Button
 									variant={"outline"}
 									className="w-full items-center gap-2"

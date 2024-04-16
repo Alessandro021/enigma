@@ -26,7 +26,7 @@ const Home = () => {
 			return alert("Insira uma texto para poder ser descriptografado");
 		}
 		if(!textKey){
-			return alert("Insira uma chave para poder que o texto criptografado possa ser descriptografado");
+			return alert("Insira uma chave para que o texto criptografado possa ser descriptografado");
 		}
 		const message = aesDecrypt(textEncrypt, textKey);
 
