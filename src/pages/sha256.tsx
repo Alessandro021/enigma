@@ -4,22 +4,22 @@ import { Textarea } from "@/components/ui/textarea";
 import { cripto } from "@/services/cripto";
 import { useState } from "react";
 
-const SHA1 = () => {
+const SHA256 = () => {
 	const [text, setText]= useState<string>("");
 	const [textEncrypt, setTextEncrypt]= useState<string>("");
 
-	const {generateSha1} = cripto();
+	const {generateSha256} = cripto();
 
 	const handleEncrypt = () => {
 		if(!text){
-			return alert("Antenção, o campo nao pode estar vazio, insira um valor para ser transformado em SHA1");
+			return alert("Antenção, o campo nao pode estar vazio, insira um valor para ser transformado em SHA256");
 		}
-		const hash = generateSha1(text);
+		const hash = generateSha256(text);
 		setTextEncrypt(hash);
 	};
 
 	
-	const handlesha1Randon = () => {
+	const handlesha256Randon = () => {
 		const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789!@#$%&*";
 		setText("");
 		let cont = 1;
@@ -29,7 +29,7 @@ const SHA1 = () => {
 			senha +=charset.charAt(Math.floor(Math.random() * charset.length));
 			cont++;
 		}
-		const hash = generateSha1(senha);
+		const hash = generateSha256(senha);
 		setTextEncrypt(hash);
 	};
 	
@@ -37,7 +37,7 @@ const SHA1 = () => {
 		<div className="p-8 flex-1">
 			<div className="flex gap-4 h-48 mb-4 border rounded-lg p-4 bg-secondary">
 				<Textarea 
-					placeholder="Texto criptografadoem SHA1"
+					placeholder="Texto criptografadoem SHA256"
 					className="resize-none h-full  bg-card"
 					value={textEncrypt}
 					readOnly
@@ -48,7 +48,7 @@ const SHA1 = () => {
 			<div className="flex max-md:flex-col flex-row gap-4  items-center border rounded-lg px-4 py-8 bg-secondary-foreground">
 				<div className="md:w-1/2 w-full">
 					<Input
-						placeholder="Insira um valor para ser transformado em SHA1"
+						placeholder="Insira um valor para ser transformado em SHA256"
 						className="placeholder:text-white text-white"
 						onChange={e => setText(e.target.value)}
 						value={text}
@@ -56,12 +56,12 @@ const SHA1 = () => {
 				</div>
 
 				<div className="flex-1 flex gap-4 w-1/2 max-md:w-full">
-					<Button className="w-1/2 max-[370px]:w-full" onClick={handleEncrypt}>Gerar SHA1</Button>
-					<Button className="w-1/2 max-[370px]:w-full" variant="outline" onClick={handlesha1Randon}>Gerar SHA1 aleatorio</Button>
+					<Button className="w-1/2 max-[370px]:w-full" onClick={handleEncrypt}>Gerar SHA256</Button>
+					<Button className="w-1/2 max-[370px]:w-full" variant="outline" onClick={handlesha256Randon}>Gerar SHA256 aleatorio</Button>
 				</div>
 			</div>
 		</div>
 	);
 };
 
-export default SHA1;
+export default SHA256;
