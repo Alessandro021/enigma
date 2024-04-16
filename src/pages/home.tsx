@@ -5,36 +5,51 @@ import { useState } from "react";
 import {cripto} from "@/services/cripto";
 
 const Home = () => {
-	const [textDecriptografado, setTextDecriptografado]= useState<string>("");
-	const [textCriptografado, setTextCriptografado]= useState<string>("");
+	const [text, setText]= useState<string>("");
+	const [textEncrypt, setTextEncrypt]= useState<string>("");
 	const [textKey, setTextKey]= useState<string>("");
 
 	const {aesEncrypt, aesDecrypt} = cripto();
 
 	const handleEncrypt = () => {
-		const hash = aesEncrypt(textDecriptografado, textKey);
-		setTextCriptografado(hash);
+		if(!text){
+			return alert("Insira uma texto para poder ser criptografado");
+		}
+		if(!textKey){
+			return alert("Insira uma chave para poder que o texto possa ser criptografado");
+		}
+		const hash = aesEncrypt(text, textKey);
+		setTextEncrypt(hash);
 	};
 	const handleDecrypt = () => {
-		const message = aesDecrypt(textCriptografado, textKey);
-		setTextDecriptografado(message);
-		
+		if(!textEncrypt){
+			return alert("Insira uma texto para poder ser descriptografado");
+		}
+		if(!textKey){
+			return alert("Insira uma chave para poder que o texto criptografado possa ser descriptografado");
+		}
+		const message = aesDecrypt(textEncrypt, textKey);
+
+		if(message instanceof Error){
+			return alert(message.message);
+		}
+		setText(message);
 	};
 	return (
 		<div className="p-8 flex-1">
-			<div className="flex gap-4 max-md:flex-col flex-row h-72 mb-4 border rounded-lg p-4 bg-secondary">
+			<div className="flex gap-4 max-md:flex-col flex-row h-96 mb-4 border rounded-lg p-4 bg-secondary">
 				<Textarea 
-					placeholder="Insira seu texto para ser incriptado"
+					placeholder="Insira um texto para ser criptografado"
 					className="resize-none h-full  bg-card"
-					onChange={e => setTextDecriptografado(e.target.value)}
-					value={textDecriptografado}
+					onChange={e => setText(e.target.value)}
+					value={text}
 				/>
 
 				<Textarea 
-					placeholder="Insira seu texto para ser decriptografado"
+					placeholder="Insira um texto para ser descriptografado"
 					className="resize-none h-full bg-card"
-					onChange={e => setTextCriptografado(e.target.value)}
-					value={textCriptografado}
+					onChange={e => setTextEncrypt(e.target.value)}
+					value={textEncrypt}
 				/>
 			</div>
 
@@ -49,8 +64,8 @@ const Home = () => {
 				</div>
 
 				<div className="flex-1 flex gap-4 w-1/2 max-md:w-full">
-					<Button className="w-1/2 max-[370px]:w-full" onClick={handleDecrypt} variant="outline">Decriptografar</Button>
 					<Button className="w-1/2 max-[370px]:w-full" onClick={handleEncrypt}>Criptografar</Button>
+					<Button className="w-1/2 max-[370px]:w-full" onClick={handleDecrypt} variant="outline">Decriptografar</Button>
 				</div>
 			</div>
 		</div>
