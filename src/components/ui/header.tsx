@@ -72,12 +72,12 @@ const Header = () => {
 						</SheetClose>
 
 						<SheetClose asChild>
-							<Link to={"/"}>
+							<Link to={"/sha512"}>
 								<Button
 									variant={"outline"}
 									className="w-full items-center gap-2"
 								>
-								Criptografar 512
+								Criptografar SHA512
 								</Button>
 							</Link>
 						</SheetClose>

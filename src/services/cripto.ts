@@ -3,6 +3,7 @@ import AES from "crypto-js/aes";
 import MD5  from "crypto-js/md5";
 import SHA1 from "crypto-js/sha1";
 import SHA256  from "crypto-js/sha256";
+import SHA512 from "crypto-js/sha512";
 
 export const cripto = () => {
 	const aesEncrypt = (message: string, key: string) =>{
@@ -34,12 +35,18 @@ export const cripto = () => {
 		return bytes.toString();
 	};
 
+	const generateSha512 = (message: string) =>{
+		const bytes = SHA512(message);
+		return bytes.toString();
+	};
+
 
 	return{
 		aesEncrypt,
 		aesDecrypt,
 		generateMd5,
 		generateSha1,
-		generateSha256
+		generateSha256,
+		generateSha512
 	};
 };
