@@ -83,7 +83,7 @@ const Header = () => {
 						</SheetClose>
 
 						<SheetClose asChild>
-							<Link to={"/"}>
+							<Link to={"/ripemd160"}>
 								<Button
 									variant={"outline"}
 									className="w-full items-center gap-2"

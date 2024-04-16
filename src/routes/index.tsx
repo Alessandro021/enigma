@@ -1,4 +1,5 @@
 import Header from "@/components/ui/header";
+import RIPEMD160 from "@/pages/Ripemd160";
 import Home from "@/pages/home";
 import MD5 from "@/pages/md5";
 import SHA1 from "@/pages/sha1";
@@ -17,6 +18,7 @@ const MyRoutes = () => {
 				<Route path="/sha1" element={<SHA1 />} />
 				<Route path="/sha256" element={<SHA256 />} />
 				<Route path="/sha512" element={<SHA512 />} />
+				<Route path="/ripemd160" element={<RIPEMD160 />} />
 				{/* <Route path="*" element={<Home />} /> */}
 			</Routes>
 		</BrowserRouter>

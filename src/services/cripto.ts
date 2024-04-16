@@ -4,6 +4,7 @@ import MD5  from "crypto-js/md5";
 import SHA1 from "crypto-js/sha1";
 import SHA256  from "crypto-js/sha256";
 import SHA512 from "crypto-js/sha512";
+import RIPEMD160 from "crypto-js/ripemd160";
 
 export const cripto = () => {
 	const aesEncrypt = (message: string, key: string) =>{
@@ -40,6 +41,11 @@ export const cripto = () => {
 		return bytes.toString();
 	};
 
+	const generateRipemd160 = (message: string) =>{
+		const bytes = RIPEMD160(message);
+		return bytes.toString();
+	};
+
 
 	return{
 		aesEncrypt,
@@ -47,6 +53,7 @@ export const cripto = () => {
 		generateMd5,
 		generateSha1,
 		generateSha256,
-		generateSha512
+		generateSha512,
+		generateRipemd160
 	};
 };
